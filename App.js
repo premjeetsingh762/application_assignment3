@@ -2,7 +2,7 @@ import React from 'react';
 
  const App=()=>{
      const [name,setName]=React.userState("");
-     const [lastName,setLastName]=React.userState();
+     const [lastName,setLastName]=React.userState("Singh");
      const[fullName,setfullName]=React.useState();
 
      const onSubmit=(event)=>{
