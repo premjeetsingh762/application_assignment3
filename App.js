@@ -1,67 +1,41 @@
 import React from 'react';
 
+ const App=()=>{
+     const [name,setName]=React.userState("");
+     const [lastName,setLastName]=React.userState();
+     const[fullName,setfullName]=React.useState();
 
-class Todos extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = { todos: [], text: '' };
-        this.removeTodo = this.removeTodo.bind(this);
-    }
+     const onSubmit=(event)=>{
+          event.preventDefault();
+          setfullName(name);
 
-    additionTodo(e) {
-        e.preventDefault();
-        this.setState({ 
-        	todos: [ this.state.text, ...this.state.todos ],
-        	text: ''
-        });
-    }
+     };
 
-    deleteTodo(name, i){
-        let todos = this.state.todos.slice();
-        todos.splice(i, 1);
-        this.setState({
-            todos
-        });
-    }
+    const inputEvent=(event)=>{
+          setName(event.target.value);
+    };
 
-    todoUpdate(e) {
-        this.setState({ text: e.target.value})
-    }
+    const inputEvent2=(event)=>{
+          setLastName(event.target.value);
+    };
 
-    render() {
-        return(
-            <div className="card d-flex main-header">
-            <div className="card-body">
-                <form className="form-group"onSubmit = {(e) => this.addTodo(e)}>
-                    <input className="form-control"
-                        placeholder="Add Todo"
-                        value={this.state.text}
-                        onChange={(e) => {this.updateValue(e)}}
-                    />
-                    <button className="btn btn-primary" type="submit">Add Todo</button>
-                </form>
-                <TodoList todos={this.state.todos} removeTodo={this.removeTodo}/>
+    return(
+         <>
+            <div className="form">
+                 <form onsubmit={onSubmit}>
+                     <div>
+                          <h1>Welcome {FullName} {LastName}</h1>
+                          <input type="text" placeholder="Enter your name" onchange={inputEvent} value={name}/>
+                          <br/>
+                          <input type="text" placeholder="Enter your lastName" onchange={inputEvent2} value={lastName}/>
+                          <button type="submit">Submit</button>
+                     </div>
+                 </form>
             </div>
-            </div>
-        );
-    }
-}
+            </>
+    )
 
-class TodoList extends React.Component {
-
-    deleteItem(item, i) {
-        this.props.removeTodo(item, i);
-    }
-
-    render() {
-        return(
-            <ul>
-                { this.props.todos.map((todo,i) => {
-                    return <li onClick={() => { this.deleteItem(todo, i)}} key={i}>{ todo }</li>
-                })}
-            </ul>
-        );
-    }
-}
-
-export default Todos;
+     
+ }
+ 
+export default App;
